@@ -7,10 +7,9 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from src.common import register_handlers_common
 from src.fsm import register_handlers_fsm
+from config.conf import API_TOKEN 
 
 logger = logging.getLogger(__name__)
-API_TOKEN = "1587078195:AAEIPrGErBtyufm4PXsFyMnqfEgszYOg5G4"
-
 
 async def set_commands(bot: Bot):
     commands = [

@@ -9,6 +9,8 @@ import logging
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ContentType
 from aiogram.dispatcher.filters import Text
 from .fsm import Form
+from config.conf import chat_id 
+ 
 log_d = logging.debug
 
 async def cmd_start(message: types.Message):
@@ -72,7 +74,6 @@ async def present_task(message: types.Message,state: FSMContext):
             await message.reply("Закончите заполнения формы или начните сначало")
 
 async def send(message,state: FSMContext):
-    chat_id = "-584307636"
     async with state.proxy() as data:
         try:
             photo = data['photo']
@@ -110,4 +111,4 @@ def register_handlers_common(dp):
     # command for task
     dp.register_message_handler(start_create_task,commands='new_task',state="*")
     dp.register_message_handler(present_task,commands='present_task',state="*")
-    dp.register_message_handler(send,commands='send_task',state="Form:photo")
+    dp.register_message_handler(send,commands='send_task',state=Form.photo)
